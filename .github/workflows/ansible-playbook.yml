@@ -49,3 +49,4 @@ jobs:
         with:
           name: appinspect-report
           path: reports/
+        if: github.workflow == "deploy splunkbase apps"
