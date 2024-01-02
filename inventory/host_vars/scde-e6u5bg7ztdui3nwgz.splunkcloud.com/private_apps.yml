@@ -1,0 +1,7 @@
+---
+splunk_cloud_private_app_folder: "./apps/"
+splunk_cloud_appinspect_reports_folder: "./reports"
+#private_app_list:
+# - id: "TA-tesla-data"
+#   url: "github://livehybrid/TA-tesla-data"
+#   version: "v1.1.0"
