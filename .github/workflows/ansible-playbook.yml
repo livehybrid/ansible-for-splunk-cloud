@@ -21,7 +21,6 @@ on:
         required: false
       SPLUNK_TOKEN:
         required: false
-
 jobs:
   ansible:
     runs-on: ubuntu-latest
@@ -38,6 +37,9 @@ jobs:
       - name: "run playbook"
         run: |
           echo '${{ secrets.ANSIBLE_VAULT_PASSWORD }}' > vault.txt
+          SPLUNK_TOKEN=${{ secrets.SPLUNK_TOKEN }} \
+          SPLUNKBASE_USERNAME=${{ secrets.SPLUNKBASE_USERNAME }} \
+          SPLUNKBASE_PASSWORD=${{ secrets.SPLUNKBASE_PASSWORD }} \
           ansible-playbook -i ${{ inputs.ansible_inventory }} --vault-pass-file vault.txt ${{ inputs.ansible_playbook }} ${{ inputs.ansible_extra_args }}
         env:
           PY_COLORS: "1"
