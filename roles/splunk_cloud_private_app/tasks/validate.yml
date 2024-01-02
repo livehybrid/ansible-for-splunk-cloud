@@ -9,6 +9,9 @@
   failed_when: r_appinspect_output.rc != 0
   changed_when: true
 
+- ansible.builtin.debug:
+    msg: "{{ r_appinspect_output }}"
+
 - name: Get CLI AppInspect report | {{ splunk_cloud_app_name }}
   ansible.builtin.slurp:
     src: "{{ splunk_cloud_appinspect_reports_folder }}/{{ splunk_cloud_app_name }}-appinspect-cli.json"
