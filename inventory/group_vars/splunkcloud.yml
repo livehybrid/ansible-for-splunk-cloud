@@ -3,3 +3,6 @@ splunk_cloud_stack: "{{ inventory_hostname | split('.') | first }}"
 
 splunkbase_username: "{{ lookup('env', 'SPLUNKBASE_USERNAME') }}"
 splunkbase_password: "{{ lookup('env', 'SPLUNKBASE_PASSWORD') }}"
+
+splunk_cloud_private_app_folder: "./apps/"
+splunk_cloud_appinspect_reports_folder: "reports"
