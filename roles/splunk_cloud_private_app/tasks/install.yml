@@ -7,7 +7,7 @@
     --header 'X-Splunk-Authorization: {{ r_splunk_api_login.json.data.token }}'
     --header 'Authorization: Bearer {{ splunk_cloud_token }}'
     --header 'ACS-Legal-Ack: Y'
-    --data-binary '@{{ f_private_app_archive }}'"
+    --data-binary '@{{ f_private_app_archive }}'
     register: command_output
   failed_when: command_output.rc!=0
   changed_when: command_output.rc==0
