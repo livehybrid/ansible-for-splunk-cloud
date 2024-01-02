@@ -2,7 +2,7 @@
 - name: Ensure AppInspect report directory exists
   ansible.builtin.file:
     path: "{{ splunk_cloud_appinspect_reports_folder }}"
-    mode: "0644"
+    mode: "0666"
     state: directory
 
 - name: Debug directory | {{ splunk_cloud_app_name }}
