@@ -36,6 +36,7 @@ jobs:
 
       - name: "run playbook"
         run: |
+          echo '${{ github.workflow }}'
           echo '${{ secrets.ANSIBLE_VAULT_PASSWORD }}' > vault.txt
           SPLUNK_TOKEN=${{ secrets.SPLUNK_TOKEN }} \
           SPLUNKBASE_USERNAME=${{ secrets.SPLUNKBASE_USERNAME }} \
