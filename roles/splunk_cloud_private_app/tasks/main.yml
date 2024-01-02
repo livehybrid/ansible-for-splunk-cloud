@@ -2,8 +2,16 @@
 - name: Ensure AppInspect report directory exists
   ansible.builtin.file:
     path: "{{ splunk_cloud_appinspect_reports_folder }}"
-    mode: "644"
+    mode: "0644"
     state: directory
+
+- name: Debug directory | {{ splunk_cloud_app_name }}
+  ansible.builtin.command: |
+    getfacl {{ splunk_cloud_appinspect_reports_folder }}
+  register: debug_output
+
+- ansible.builtin.debug:
+    msg: "{{ debug_output }}"
 
 - name: Authenticate to Splunk API
   ansible.builtin.uri:
