@@ -5,22 +5,6 @@
     mode: "0755"
     state: directory
 
-- name: Debug directory 1 | {{ splunk_cloud_app_name }}
-  ansible.builtin.command: |
-    getfacl {{ splunk_cloud_private_app_folder }}
-  register: debug_output
-
-- ansible.builtin.debug:
-    msg: "{{ debug_output }}"
-
-- name: Debug directory 2 | {{ splunk_cloud_app_name }}
-  ansible.builtin.command: |
-    getfacl {{ splunk_cloud_appinspect_reports_folder }}
-  register: debug_output2
-
-- ansible.builtin.debug:
-    msg: "{{ debug_output2 }}"
-
 - name: Authenticate to Splunk API
   ansible.builtin.uri:
     url: "https://api.splunk.com/2.0/rest/login/splunk"

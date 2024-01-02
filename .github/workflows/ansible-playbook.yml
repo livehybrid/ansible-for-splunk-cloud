@@ -44,3 +44,8 @@ jobs:
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
+      - name: Save Private app inspection reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: appinspect-report
+          path: reports/
