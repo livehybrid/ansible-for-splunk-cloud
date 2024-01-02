@@ -4,3 +4,8 @@
   roles:
     - splunk_cloud_private_app
     - splunk_cloud_restart
+  module_defaults:
+    ansible.builtin.get_url:
+      validate_certs: false
+    ansible.builtin.uri:
+      validate_certs: false

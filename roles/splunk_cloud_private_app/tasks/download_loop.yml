@@ -1,0 +1,25 @@
+---
+- name: "Get app download url | {{ private_app_name }}"
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/{{ private_app_location.hostname }}{{ private_app_location.path }}/releases/tags/{{ private_app_version }}"
+    method: GET
+    status_code: [200, 202]
+    return_content: true
+  register: app_download_data
+
+- name: "Download app | {{ private_app_name }}"
+  ansible.builtin.get_url:
+    url: "{{ app_download_data.json.assets[0].browser_download_url }}"
+    mode: "644"
+    dest: "{{ splunk_cloud_private_app_folder }}"
+  register: app_download_file
+
+- name: "Extract app | {{ private_app_name }}"
+  ansible.builtin.unarchive:
+    src: "{{ app_download_file.dest }}"
+    dest: "{{ splunk_cloud_private_app_folder }}"
+
+- name: "Delete tarball | {{ private_app_name }}"
+  ansible.builtin.file:
+    path: "{{ app_download_file.dest }}"
+    state: absent
