@@ -40,7 +40,7 @@ jobs:
           SPLUNK_TOKEN=${{ secrets.SPLUNK_TOKEN }} \
           SPLUNKBASE_USERNAME=${{ secrets.SPLUNKBASE_USERNAME }} \
           SPLUNKBASE_PASSWORD=${{ secrets.SPLUNKBASE_PASSWORD }} \
-          sudo ansible-playbook -i ${{ inputs.ansible_inventory }} --vault-pass-file vault.txt ${{ inputs.ansible_playbook }} ${{ inputs.ansible_extra_args }}
+          ansible-playbook -i ${{ inputs.ansible_inventory }} --vault-pass-file vault.txt ${{ inputs.ansible_playbook }} ${{ inputs.ansible_extra_args }}
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"

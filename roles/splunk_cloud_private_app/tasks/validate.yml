@@ -1,4 +1,11 @@
 ---
+# BUG? AppInspect gets permission denied if file doesnt exist
+- name: Create AppInspect report file | {{ splunk_cloud_app_name }}
+  ansible.builtin.file:
+    path: "{{ splunk_cloud_appinspect_reports_folder }}/{{ splunk_cloud_app_name }}-appinspect-cli.json"
+    mode: "644"
+    state: touch
+
 - name: Running local app-inspect | {{ splunk_cloud_app_name }}
   ansible.builtin.command: |
     splunk-appinspect inspect {{ splunk_cloud_app_path }}
