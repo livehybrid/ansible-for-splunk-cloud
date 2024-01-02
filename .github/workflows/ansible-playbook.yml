@@ -19,11 +19,6 @@ on:
 jobs:
   ansible:
     runs-on: ubuntu-latest
-    secrets:
-      ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
-      SPLUNKBASE_USERNAME: ${{ secrets.SPLUNKBASE_USERNAME }}
-      SPLUNKBASE_PASSWORD: ${{ secrets.SPLUNKBASE_PASSWORD }}
-      SPLUNK_TOKEN: ${{ secrets.SPLUNK_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
