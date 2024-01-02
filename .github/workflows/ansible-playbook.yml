@@ -14,7 +14,13 @@ on:
         default: ""
     secrets:
       ANSIBLE_VAULT_PASSWORD:
-        required: true
+        required: false
+      SPLUNKBASE_USERNAME:
+        required: false
+      SPLUNKBASE_PASSWORD:
+        required: false
+      SPLUNK_TOKEN:
+        required: false
 
 jobs:
   ansible:
