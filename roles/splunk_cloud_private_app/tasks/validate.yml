@@ -36,7 +36,17 @@
 - name: Set facts
   ansible.builtin.set_fact:
     f_private_app_archive: "{{ r_splunk_app_archive.dest }}"
+- name: Get CURL Version
+  ansible.builtin.command: |
+    curl --version
+  delay: 15
+  timeout: 30
+  retries: 10
+  register: curl_debug
 
+- ansible.builtin.debug:
+    msg: "{{ curl_debug }}"
+    
 - name: Send app to validation | {{ splunk_cloud_app_name }} # noqa: command-instead-of-module
   ansible.builtin.command: |
     curl -s -X POST "https://appinspect.splunk.com/v1/app/validate"
