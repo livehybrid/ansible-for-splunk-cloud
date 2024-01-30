@@ -9,6 +9,9 @@
   failed_when: r_appinspect_output.rc != 0
   changed_when: true
 
+- ansible.builtin.debug:
+    msg: "{{ r_appinspect_output.stdout }}"
+
 - name: Get CLI AppInspect report | {{ splunk_cloud_app_name }}
   ansible.builtin.slurp:
     src: "{{ splunk_cloud_appinspect_reports_folder }}/{{ splunk_cloud_app_name }}-appinspect-cli.json"
@@ -39,13 +42,14 @@
 
 - name: Send app to validation | {{ splunk_cloud_app_name }} # noqa: command-instead-of-module
   ansible.builtin.command: |
-    curl --http1.1 -s -X POST "https://appinspect.splunk.com/v1/app/validate"
+    curl --connect-timeout 30 --max-time 300 -s -X POST "https://appinspect.splunk.com/v1/app/validate"
     -F "app_package=@{{ f_private_app_archive }}"
-    --header "Authorization: Bearer {{ r_splunk_api_login.json.data.token }}"
+    -H "Cache-Control: no-cache"
+    -H "Authorization: Bearer {{ r_splunk_api_login.json.data.token }}"
     -F "included_tags=private_victoria"
-  delay: 15
-  timeout: 30
-  retries: 10
+  timeout: 1000
+  retries: 3
+  until: r_splunk_validate_submit.rc == 0
   register: r_splunk_validate_submit
   failed_when: r_splunk_validate_submit.rc!=0
   changed_when: r_splunk_validate_submit.rc==0

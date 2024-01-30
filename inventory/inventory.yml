@@ -1,5 +1,5 @@
 ---
 splunkcloud:
   hosts:
-    scde-e6u5bg7ztdui3nwgz.splunkcloud.com:
+    prod:
       ansible_connection: "local"

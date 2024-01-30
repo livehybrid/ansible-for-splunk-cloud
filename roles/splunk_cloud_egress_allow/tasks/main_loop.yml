@@ -13,7 +13,7 @@
 
 - name: Remove egress rule before recreating because of changes in the rule | {{ egress_rule.port }}
   ansible.builtin.uri:
-    url: "https://admin.splunk.com/{{ splunk_cloud_stack }}/adminconfig/v2/access/outbound-ports/{{ egress_rule.port }}"
+    url: "https://{{ splunk_acs_domain }}/{{ splunk_cloud_stack }}/adminconfig/v2/access/outbound-ports/{{ egress_rule.port }}"
     method: DELETE
     body_format: json
     status_code: [200, 202]
@@ -34,7 +34,7 @@
 
 - name: Add/Update egress rule | {{ egress_rule.port }}
   ansible.builtin.uri:
-    url: "https://admin.splunk.com/{{ splunk_cloud_stack }}/adminconfig/v2/access/outbound-ports"
+    url: "https://{{ splunk_acs_domain }}/{{ splunk_cloud_stack }}/adminconfig/v2/access/outbound-ports"
     method: POST
     body_format: json
     status_code: [200, 202]

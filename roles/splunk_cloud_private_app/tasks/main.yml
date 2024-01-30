@@ -18,7 +18,7 @@
 
 - name: List all splunk cloud private apps
   ansible.builtin.uri:
-    url: "https://admin.splunk.com/{{ splunk_cloud_stack }}/adminconfig/v2/apps/victoria?splunkbase=false&count=100"
+    url: "https://{{ splunk_acs_domain }}/{{ splunk_cloud_stack }}/adminconfig/v2/apps/victoria?splunkbase=false&count=100"
     method: GET
     status_code: [200, 202]
     return_content: true
@@ -40,6 +40,7 @@
     private_app_name: "{{ private_app.id }}"
     private_app_location: "{{ private_app.url | urlsplit }}"
     private_app_version: "{{ private_app.version }}"
+    private_app: "{{ private_app }}"
 
 - name: List all local apps
   ansible.builtin.find:
@@ -59,7 +60,7 @@
 
 - name: Delete all apps which are installed in the cloud but not in the list of apps from git # noqa jinja[invalid]
   ansible.builtin.uri:
-    url: "https://admin.splunk.com/{{ splunk_cloud_stack }}/adminconfig/v2/apps/victoria/{{ item }}"
+    url: "https://{{ splunk_acs_domain }}/{{ splunk_cloud_stack }}/adminconfig/v2/apps/victoria/{{ item }}"
     method: DELETE
     status_code: [200, 202]
     return_content: true
