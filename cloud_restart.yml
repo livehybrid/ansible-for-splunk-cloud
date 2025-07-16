@@ -1,0 +1,6 @@
+---
+- name: Restart Splunk Cloud
+  hosts: splunkcloud
+  gather_facts: false
+  roles:
+    - splunk_cloud_restart 
