@@ -5,3 +5,25 @@ splunk_cloud_role_list:
   - name: example_role2
     capabilities: [admin_all_objects]
     state: present
+
+  # Create our demo role definition
+  - name: demo_role
+    capabilities: []
+    srchIndexesAllowed: [
+      "*"
+    ],
+    srchIndexesDefault: [
+      "main"
+    ],
+   cumulativeRTSrchJobsQuota: 100,
+   cumulativeSrchJobsQuota: 50,
+   defaultApp: "search",
+   importedRoles: [],
+   rtSrchJobsQuota: 6,
+   srchDiskQuota: 100,
+   srchFilter: "",
+   srchIndexesAllowed: [],
+   srchIndexesDefault: [],
+   srchJobsQuota: 3,
+   srchTimeEarliest: 0,
+   srchTimeWin: -1
