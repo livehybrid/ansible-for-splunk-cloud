@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - "inventory/host_vars/*/role_config.yml"
+      - "inventory/host_vars/*/rbac_roles.yml"
+      - "inventory/group_vars/*/rbac_roles.yml"
 
 concurrency:
   group: ${{ github.workflow }}
