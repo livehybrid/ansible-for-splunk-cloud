@@ -11,20 +11,18 @@ splunk_cloud_role_list:
     state: present
     capabilities: []
     srchIndexesAllowed: [
-      "*"
+      "main;common_*;_internal"
     ]
     srchIndexesDefault: [
       "main"
     ]
     cumulativeRTSrchJobsQuota: 100
     cumulativeSrchJobsQuota: 50
-    defaultApp: "search"
-    importedRoles: [user]
+    defaultApp: "launcher"
+    importedRoles: [power]
     rtSrchJobsQuota: 6
-    srchDiskQuota: 100
+    srchDiskQuota: 1000
     srchFilter: ""
-    srchIndexesAllowed: []
-    srchIndexesDefault: []
     srchJobsQuota: 3
     srchTimeEarliest: 0
     srchTimeWin: -1
